@@ -13,6 +13,15 @@ const express = require('express');
 // https://www.npmjs.com/package/hbs
 const hbs = require('hbs');
 
+const _ = require('lodash');
+
+const helpers = require('handlebars-helpers');
+
+_.each(helpers(),(value,key)=>{
+    hbs.registerHelper(key,value)
+})
+
+//=> returns object with all (130+) helpers
 const app = express();
 
 // ℹ️ This function is getting exported from the config folder. It runs most middlewares
@@ -26,7 +35,11 @@ app.locals.title = `${capitalized(projectName)}- Generated with Ironlauncher`;
 
 // 👇 Start handling routes here
 const index = require('./routes/index');
+const celebritiesRoute = require('./routes/celebrities.routes');
+const moviesRoute = require('./routes/movies.routes');
 app.use('/', index);
+app.use('/celebrities', celebritiesRoute);
+app.use('/movies', moviesRoute);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);
