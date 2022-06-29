@@ -12,16 +12,12 @@
     <br>
 {{/with}}
     <label for="">Cast: </label>
-    <select name="cast" multiple type="text" name="plot">
-        {{#each celebrities as |celebrity| }}
-            {{#each movie.cast as |actorId| }}
-                {{#eq celebrity.id compare=actorId}}
-                    <option selected value={{celebrity.id}}>{{celebrity.name}}</option>
-                {{/eq}}
-                {{#unlessEq celebrity.id compare=actorId}}
-                    <option value={{celebrity.id}}>{{celebrity.name}}</option>
-                {{/unlessEq}}
-            {{/each}}
+    <select name="cast" multiple type="text">
+        {{#each movie.cast }}
+            <option selected value={{this.id}}>{{this.name}}</option>
+        {{/each}}
+        {{#each notInCast }}
+            <option value={{this.id}}>{{this.name}}</option>
         {{/each}}
     </select>
     

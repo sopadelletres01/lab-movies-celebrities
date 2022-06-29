@@ -12,7 +12,7 @@ const express = require('express');
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require('hbs');
-
+/* 
 const _ = require('lodash');
 
 const helpers = require('handlebars-helpers');
@@ -20,7 +20,7 @@ const helpers = require('handlebars-helpers');
 _.each(helpers(),(value,key)=>{
     hbs.registerHelper(key,value)
 })
-
+ */
 //=> returns object with all (130+) helpers
 const app = express();
 
